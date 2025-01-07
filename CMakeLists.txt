@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(Filters)
+set(PROJECT_NAME "Filters")
 
 set(CMAKE_CXX_STANDARD 20)
 
