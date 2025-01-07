@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "HighPassFilter.h"
+
 #include <juce_audio_processors/juce_audio_processors.h>
 
 #include <vector>

@@ -20,7 +20,7 @@ void FiltersEditor::paint (juce::Graphics& g)
     g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 
     auto area = getLocalBounds();
-    g.drawText("Filter DSP", area.removeFromTop(150), juce::Justification::centred, false);
+    g.drawText("Filters Plugin", area.removeFromTop(150), juce::Justification::centred, false);
 }
 
 void FiltersEditor::resized()
