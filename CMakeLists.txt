@@ -42,8 +42,10 @@ set(
     ProjectSource
     source/PluginEditor.h
     source/PluginProcessor.h
+    source/HighPassFilter.h
     source/PluginEditor.cpp
     source/PluginProcessor.cpp
+    source/HighPassFilter.cpp
 )
 
 target_sources("${PROJECT_NAME}" PRIVATE ${ProjectSource})
