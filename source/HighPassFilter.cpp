@@ -33,3 +33,13 @@ void HighPassFilter::process(juce::AudioBuffer<float>& buffer, double samplerate
         }
     }
 }
+
+void HighPassFilter::processBlock(juce::AudioBuffer<float>& buffer, double samplerate) {
+    mProcessBuffer.setSize(buffer.getNumChannels(), buffer.getNumSamples());
+
+    const auto pi = juce::MathConstants<float>::pi;
+    const auto sign = mIsHighpass ? -1.f : 1.f;
+
+    const auto tan = std::tan(pi * mCutoff / samplerate);
+    const auto a1 = (tan - 1.f) / (tan + 1.f);
+}

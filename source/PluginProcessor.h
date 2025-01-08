@@ -48,8 +48,6 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    juce::dsp::ProcessSpec mProcessSpec;
-
     std::unique_ptr<HighPassFilter> mHighpass = std::make_unique<HighPassFilter>();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FiltersProcessor)
