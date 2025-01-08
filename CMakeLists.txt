@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
 set(PROJECT_NAME "Filters")
-set(FORMATS AU)
+set(FORMATS AU Standalone)
 
 file(STRINGS VERSION CURRENT_VERSION)
 
