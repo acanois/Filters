@@ -128,6 +128,10 @@ void FiltersProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
     juce::ScopedNoDenormals noDenormals;
 
+    mProcessSpec.numChannels = static_cast<unsigned int>(buffer.getNumChannels());
+    mProcessSpec.maximumBlockSize = static_cast<unsigned int>(buffer.getNumSamples());
+    mProcessSpec.sampleRate = getSampleRate();
+
     mHighpass->process(buffer, getSampleRate());
 }
 
