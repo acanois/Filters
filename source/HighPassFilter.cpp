@@ -35,11 +35,32 @@ void HighPassFilter::process(juce::AudioBuffer<float>& buffer, double samplerate
 }
 
 void HighPassFilter::processBlock(juce::AudioBuffer<float>& buffer, double samplerate) {
+    // Same function but using a buffer rather than std::vector
     mProcessBuffer.setSize(buffer.getNumChannels(), buffer.getNumSamples());
+    mProcessBuffer.clear();
 
     const auto pi = juce::MathConstants<float>::pi;
     const auto sign = mIsHighpass ? -1.f : 1.f;
 
     const auto tan = std::tan(pi * mCutoff / samplerate);
     const auto a1 = (tan - 1.f) / (tan + 1.f);
+
+    for (auto channel = 0; channel < buffer.getNumChannels(); ++channel) {
+        auto channelWritePtr = buffer.getWritePointer(channel);
+        auto processPtr = mProcessBuffer.getWritePointer(channel);
+
+        for (auto sample = 0; sample < buffer.getNumSamples(); ++sample) {
+            const auto inputSample = channelWritePtr[sample];
+
+            // allpass filter
+            const auto apfSample = a1 * inputSample + processPtr[channel];
+            processPtr[channel] = static_cast<float>(inputSample - a1 * apfSample);
+
+            // hpf or lpf applied - scaled by 0.5 to stay in [-1, 1]
+            const auto outputSample = 0.5f * (inputSample + sign * apfSample);
+
+            // assign to output
+            channelWritePtr[sample] = static_cast<float>(outputSample);
+        }
+    }
 }
