@@ -128,8 +128,8 @@ void FiltersProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
     juce::ScopedNoDenormals noDenormals;
 
-//    mHighpass->process(buffer, getSampleRate());
-    mHighpass->processBlock(buffer, getSampleRate());
+    mHighpass->process(buffer, getSampleRate());
+//    mHighpass->processBlock(buffer, getSampleRate());
 }
 
 //==============================================================================
